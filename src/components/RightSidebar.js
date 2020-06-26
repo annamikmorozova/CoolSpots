@@ -4,9 +4,16 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import { FaMapMarkerAlt } from "react-icons/fa";
-// import { GiThreeFriends } from "react-icons/gi";
+// import { GrSearchAdvanced } from "react-icons/gr";
+import LocationSearchInput from './LocationSearchInput.js'
 
 export class RightSidebar extends Component {
+    // constructor () {
+    //     super();
+
+    // }
+
+
     render () {
         const {isLoggedIn, firstName} = this.props;
       
@@ -18,10 +25,7 @@ export class RightSidebar extends Component {
                 '')}
               { isLoggedIn ? (
                 <div className="rightbar-text" href="#">
-                    <input type="text" className="input" placeholder="Search..." />
-                        <ul>
-                        ...
-                        </ul>
+                        <LocationSearchInput/>
                 </div>
                 ) : (
                 '')}

@@ -37,8 +37,8 @@ class Map extends Component {
           defaultCenter={Map.defaultProps.center}
           center={Map.defaultProps.center}
           defaultZoom={Map.defaultProps.zoom}
-          //onChildMouseEnter={this.onChildMouseEnter}
-          //onChildMouseLeave={this.onChildMouseLeave}
+          onChildMouseEnter={Map.defaultProps.onChildMouseEnter}
+          onChildMouseLeave={Map.defaultProps.onChildMouseLeave}
           distanceToMouse={()=>{}}
         >
           <AnyReactComponent
