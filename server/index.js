@@ -4,6 +4,7 @@ const volleyball = require('volleyball')
 const compression = require('compression')
 const session = require('express-session')
 const passport = require('passport')
+const db = require('./db/models/user')
 // const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const MongoDBStore = require('connect-mongodb-session')(session);
@@ -12,7 +13,7 @@ const mongoose = require('mongoose');
 //secrets file
 require("dotenv").config();
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 
 // logging middleware
 // Only use logging middleware when not running tests
@@ -62,6 +63,17 @@ app.use(session({
     //store: new MongoDBStore({mongooseConnection: mongoose.connection})
 }));
 
+passport.serializeUser((user, done) => done(null, user.id))
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await db.models.user.findByPk(id)
+    done(null, user)
+  } catch (err) {
+    done(err)
+  }
+})
+
 // routes
 // app.use('/api', require('./api')) 
 app.use('/auth', require('./auth/'))
@@ -69,10 +81,6 @@ app.use('/auth', require('./auth/'))
 app.use(passport.initialize())
 app.use(passport.session())
 
-// Send index.html for any other requests
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'))
-})
 
 // error handling middleware
 app.use((err, req, res, next) => {
@@ -87,15 +95,6 @@ app.use((err, req, res, next) => {
 
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
-
-// passport.deserializeUser(async (id, done) => {
-//     try {
-//         const user = await db.models.user.findByPk(id)
-//         done(null, user)
-//     } catch (err) {
-//         done(err)
-//     }
-// })
 
 // any remaining requests with an extension (.js, .css, etc.) send 404
 app.use((req, res, next) => {

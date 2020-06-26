@@ -10,7 +10,7 @@ function App() {
     return (
       <div className="layout">
           <Sidebar />
-        {/* <Routes /> */}
+          <Routes />
         {/* <Footer /> */}
       </div>
     );

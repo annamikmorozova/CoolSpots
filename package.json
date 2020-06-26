@@ -4,10 +4,8 @@
   "private": true,
   "description": "Create your own map and share with your friends!",
   "author": "Anna Morozova",
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:5000/",
   "dependencies": {
-    "@material-ui/core": "^4.10.2",
-    "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -18,6 +16,7 @@
     "bootstrap": "^4.5.0",
     "chalk": "^4.1.0",
     "compression": "^1.7.4",
+    "concurrently": "^5.2.0",
     "connect-mongodb-session": "^2.3.3",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
@@ -44,14 +43,19 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "volleyball": "^1.5.1"
+    "volleyball": "^1.5.1",
+    "yarn": "^1.22.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "build-client-watch": "webpack -w",
+    "start-dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "client": "cd src && yarn start",
+    "server": "NODE_ENV=development nodemon server/index.js"
   },
   "eslintConfig": {
     "extends": "react-app"

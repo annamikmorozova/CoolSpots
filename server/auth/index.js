@@ -22,7 +22,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
-
+  console.log(req.body)
   await User.findOne({email: req.body.email})
       .then(user => {
           if (user) return res.status(400).send("User already exists");
@@ -35,6 +35,7 @@ router.post("/signup", async (req, res) => {
                   email: req.body.email,
                   password: hash
               });
+              console.log(user)
 
               user.save()
                   .then(() => {
@@ -53,7 +54,8 @@ router.route('/logout').post((req, res) => {
 });
 
 router.route('/me').get((req, res) => {
-  res.json(req.user);
+  console.log(req.session.user)
+  res.json(req.session.user);
 });
 
 // router.use('/google', require('./google'));

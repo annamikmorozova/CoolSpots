@@ -12,7 +12,7 @@ import {
   Button
 } from 'reactstrap';
 
-const AuthForm = props => {
+export const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props;
 
   return (
@@ -22,6 +22,16 @@ const AuthForm = props => {
         {name === 'signup' ? (
           <div>
             <Col>
+            <FormGroup>
+                <Label className="label-text-style" for="exampleUsername">
+                  Username
+                </Label>
+                <Input
+                  name="username"
+                  type="text"
+                  placeholder="Enter Your Username"
+                />
+              </FormGroup>
               <FormGroup>
                 <Label className="label-text-style" for="exampleFName">
                   First Name
@@ -96,7 +106,8 @@ const mapDispatch = dispatch => {
       const lastName = formName === 'signup' ? evt.target.lname.value : null;
       const email = evt.target.email.value;
       const password = evt.target.password.value;
-      dispatch(auth(firstName, lastName, email, password, formName));
+      const username = formName === 'signup' ? evt.target.username.value : null;
+      dispatch(auth(username, firstName, lastName, email, password, formName));
     }
   };
 };
