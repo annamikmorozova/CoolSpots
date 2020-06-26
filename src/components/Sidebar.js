@@ -6,13 +6,15 @@ import PropTypes from 'prop-types';
 
 export class Sidebar extends Component {
     render () {
-        // const {isLoggedIn} = this.props;
+        const {isLoggedIn} = this.props;
         return (
             <Navbar className="sidebar" bg="primary" variant="dark">
-                    <Navbar.Brand className="navbar-text" href="./mymap">MyMap</Navbar.Brand>
-                    <Navbar.Brand className="navbar-text" href="./myfriends">MyFriends</Navbar.Brand>
-                    <Navbar.Brand className="navbar-text" href="./signup">Signup</Navbar.Brand>
-                    <Navbar.Brand className="navbar-text" href="./login">Login</Navbar.Brand>
+              { isLoggedIn ? (
+              <Navbar.Brand className="navbar-text" href="./mymap">MyMap</Navbar.Brand>) : (
+              <Navbar.Brand className="navbar-text" href="./signup">Signup</Navbar.Brand>)}
+              { isLoggedIn ? (
+              <Navbar.Brand className="navbar-text" href="./myfriends">MyFriends</Navbar.Brand>) : (
+              <Navbar.Brand className="navbar-text" href="./login">Login</Navbar.Brand>)}
             </Navbar>
          )
     }
@@ -20,7 +22,7 @@ export class Sidebar extends Component {
 
 const mapState = state => {
     return {
-      isLoggedIn: !!state.user.id
+      isLoggedIn: !!state.user._id
     };
   };
 

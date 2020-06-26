@@ -15,7 +15,7 @@ router.post("/login", async (req, res) => {
                   console.log("Password doesn't match!")
               } else {
                   req.session.user = user;
-                  res.sendStatus(200);
+                  res.json(user)
               }
           })
       })
@@ -40,7 +40,7 @@ router.post("/signup", async (req, res) => {
               user.save()
                   .then(() => {
                       req.session.user = user;
-                      res.sendStatus(200);
+                      res.json(user)
                   })
                   .catch(err => res.status(400).json("Error: " + err));
           });
