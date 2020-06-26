@@ -6,6 +6,7 @@ import HomePage from "./HomePage";
 import {Login} from "./AuthForm";
 import {Signup} from "./AuthForm";
 import UserHome from "./UserHome";
+import Map from "./Map";
 import {me} from '../store/reducer.js';
 
 class Routes extends Component {
@@ -25,7 +26,8 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route exact path="/mymap" component={UserHome} />
+            <Route exact path="/myfriends" component={UserHome} />
+            <Route exact path="/mymap" component={Map} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

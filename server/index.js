@@ -5,9 +5,8 @@ const compression = require('compression')
 const session = require('express-session')
 const passport = require('passport')
 const db = require('./db/models/user')
-// const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
-const MongoDBStore = require('connect-mongodb-session')(session);
+const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 
 //secrets file
@@ -60,19 +59,10 @@ app.use(session({
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7 //one week
     },
-    //store: new MongoDBStore({mongooseConnection: mongoose.connection})
+    store: new MongoStore({mongooseConnection: connection})
 }));
 
 passport.serializeUser((user, done) => done(null, user.id))
-
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await db.models.user.findByPk(id)
-    done(null, user)
-  } catch (err) {
-    done(err)
-  }
-})
 
 // routes
 // app.use('/api', require('./api')) 
@@ -92,9 +82,6 @@ app.use((err, req, res, next) => {
 // if (process.env.NODE_ENV === 'test') {
 //   after('close the session store', () => sessionStore.stopExpiringSessions())
 // }
-
-// passport registration
-passport.serializeUser((user, done) => done(null, user.id))
 
 // any remaining requests with an extension (.js, .css, etc.) send 404
 app.use((req, res, next) => {
