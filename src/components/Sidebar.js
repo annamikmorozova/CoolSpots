@@ -5,6 +5,8 @@ import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { GiThreeFriends } from "react-icons/gi";
+import { FiLogOut } from "react-icons/fi";
+import { logout } from "../store/reducer"
 
 export class Sidebar extends Component {
     render () {
@@ -13,10 +15,13 @@ export class Sidebar extends Component {
             <Navbar className="sidebar" bg="primary" variant="dark">
               { isLoggedIn ? (
               <Navbar.Brand className="navbar-text" href="./mymap"><FaMapMarkerAlt size={32} /></Navbar.Brand>) : (
-              <Navbar.Brand className="navbar-text" href="./signup">Signup</Navbar.Brand>)}
+              <Navbar.Brand className="navbar-text"></Navbar.Brand>)}
               { isLoggedIn ? (
               <Navbar.Brand className="navbar-text" href="./myfriends"> <GiThreeFriends size={32} /> </Navbar.Brand>) : (
-              <Navbar.Brand className="navbar-text" href="./login">Login</Navbar.Brand>)}
+              <Navbar.Brand className="navbar-text"></Navbar.Brand>)}
+               { isLoggedIn ? (
+              <Navbar.Brand className="navbar-text" href="./" onClick={this.props.handleClick}> <FiLogOut size={32} /> </Navbar.Brand>) : (
+              '')}
             </Navbar>
          )
     }
@@ -28,7 +33,15 @@ const mapState = state => {
     };
   };
 
-export default withRouter(connect(mapState)(Sidebar));
+  const mapDispatch = dispatch => {
+    return {
+      handleClick() {
+        dispatch(logout());
+      }
+    }
+  }
+
+export default withRouter(connect(mapState, mapDispatch)(Sidebar));
 
 Sidebar.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired

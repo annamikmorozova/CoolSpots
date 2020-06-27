@@ -11,6 +11,7 @@ import {
   Input,
   Button
 } from 'reactstrap';
+import { RiLogoutBoxLine } from 'react-icons/ri';
 
 export const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props;
@@ -18,7 +19,10 @@ export const AuthForm = props => {
   return (
     <Container className="App">
       <Form className="form" onSubmit={handleSubmit} name={name}>
-        <h2>{displayName}</h2>
+        <h2> 
+          <a href="./"><RiLogoutBoxLine size={32}/> </a>
+          {displayName}
+        </h2>
         {name === 'signup' ? (
           <div>
             <Col>
@@ -69,11 +73,11 @@ export const AuthForm = props => {
             <Input name="password" type="password" placeholder="********" />
           </FormGroup>
         </Col>
-        <Button className="button-submit" variant="primary" type="submit">
+        <Button className="button-submit" type="submit">
           {displayName}
         </Button>
         {error && error.response && <div> {error.response.data} </div>}
-        <Button className="button-submit" href="/auth/google">
+        <Button className="button-submit" type="outline-primary" href="/auth/google">
           {displayName} with Google
         </Button>
       </Form>
