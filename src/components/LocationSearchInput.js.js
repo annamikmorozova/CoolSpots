@@ -3,8 +3,10 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+import { addPlace } from '../store/reducer';
+import {connect} from 'react-redux';
 
-export default class LocationSearchInput extends React.Component {
+export class LocationSearchInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = { address: '' };
@@ -15,10 +17,11 @@ export default class LocationSearchInput extends React.Component {
   };
 
   handleSelect = address => {
-    console.log(address)
+    console.log("ADDRESS", address)
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
-      .then(latLng => console.log('Success', latLng))
+      .then(latLng => 
+        console.log('Success', latLng))
       .catch(error => console.error('Error', error));
   };
 
@@ -65,3 +68,11 @@ export default class LocationSearchInput extends React.Component {
     );
   }
 }
+
+const mapDispatch = dispatch => {
+  return {
+      addPlace: place => dispatch(addPlace(place))
+  }
+}
+
+export default  connect(null, mapDispatch)(LocationSearchInput);

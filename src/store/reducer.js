@@ -3,6 +3,7 @@ import history from '../history';
 
 const GET_USER = 'GET_USER';
 const REMOVE_USER = 'REMOVE_USER';
+const ADD_PLACE = 'ADD_PLACE';
 
 const defaultUser = {};
 
@@ -14,6 +15,11 @@ const getUser = user => ({
 const removeUser = () => ({
     type: REMOVE_USER
 });
+
+export const addPlace = place => ({
+  type: ADD_PLACE,
+  place
+})
 
 export const me = () => async dispatch => {
   try {
@@ -69,6 +75,10 @@ export default function(state = defaultUser, action) {
       return action.user;
     case REMOVE_USER:
       return defaultUser;
+    case ADD_PLACE:
+      return {
+        ...state, places: [...state.places, action.place]
+      }
     default:
       return state;
   }
