@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {setCenter} from '../store/centerReducer';
+import {FcDeleteColumn} from 'react-icons/fc';
 
 export class FavSpots extends Component {
 
@@ -13,8 +14,8 @@ export class FavSpots extends Component {
                     <div className="my-cool-spots">My Cool Spots</div>
                     {places.map(place => {
                         return (
-                            <div onClick={() => this.props.setCenter(parseFloat(place.lat["$numberDecimal"]), parseFloat(place.lng["$numberDecimal"]))} className="place-name">{place.name}</div>
-                        )}
+                            <div classNAme="cool-spot-list" onClick={() => this.props.setCenter(parseFloat(place.lat["$numberDecimal"]), parseFloat(place.lng["$numberDecimal"]))} className="place-name">{place.name} <FcDeleteColumn size={32}/></div>
+                            )}
                     )}
                 </div>
          )

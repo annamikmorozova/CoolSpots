@@ -3,7 +3,7 @@ const { User } = require('../db/models/user');
 const bcrypt = require("bcrypt");
 
 function returnPopulatedUser(user, res) {
-    User.findOne({_id: user._id}).populate("friends").populate("places").then(populatedUser => {
+    User.findOne({_id: user._id}).populate("friends").populate("places").populate({path: "friends", populate: {path: "places", model: "Place"}}).then(populatedUser => {
         res.json(populatedUser)
     })
 }
@@ -28,16 +28,14 @@ router.post("/login", async (req, res, next) => {
               } else {
                   req.login(user, err => {
                         if (err) return next(err)
-                        User.findOne({_id: user._id}).populate("places").then(populatedUser => {
-                            res.json(populatedUser)
-                        })
+                        returnPopulatedUser(user, res);
                   })
               }
           })
       })
 });
 
-router.post("/signup", async (req, res) => {
+router.post("/signup", async (req, res, next) => {
   await User.findOne({email: req.body.email})
       .then(user => {
           if (user) return res.status(400).send("User already exists");
@@ -53,8 +51,10 @@ router.post("/signup", async (req, res) => {
 
               user.save()
                   .then(() => {
-                      req.session.user = user;
-                      res.json(user)
+                    req.login(user, err => {
+                        if (err) return next(err)
+                        returnPopulatedUser(user, res);
+                    })
                   })
                   .catch(err => res.status(400).json("Error: " + err));
           });
@@ -68,9 +68,7 @@ router.route('/logout').post((req, res) => {
 });
 
 router.route('/me').get(loggedIn, (req, res) => {
-  User.findOne({_id: req.user._id}).populate("places").then(populatedUser => {
-    res.json(populatedUser)
-    })
+    returnPopulatedUser(req.user, res);
 });
 
 // router.use('/google', require('./google'));

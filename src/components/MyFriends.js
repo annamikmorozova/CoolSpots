@@ -6,44 +6,41 @@ import {addFriendThunk} from '../store/userReducer';
 class MyFriends extends Component{
   constructor() {
     super()
-    // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // handleChange(event) {
-  //   this.setState({value: event.target.value});
-  // }
-
   handleSubmit(event) {
     event.preventDefault();
-    addFriendThunk(this.props.user)
+    this.props.addFriendThunk(event.target.friend_username.value)
   }
 
     render() {
       return (
           <div className="friends">
               <h3 className="friends-title">My friends</h3>
-              <input
-              type="text"
-              className="location-search-input"
-              placeholder="Search Friends ..."
-              onSubmit={this.handleSubmit}
-              />
+              <form className="form-add-friends" onSubmit={this.handleSubmit} >
+                <input
+                type="text"
+                className="location-search-input"
+                placeholder="Search Friends by username ..."
+                name="friend_username"
+                />
+                <Button type="submit" className="btn btn-primary">ADD</Button>
+              </form>
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col"></th>
+                    <th scope="col">Unfriend</th>
+                    <th scope="col">Username</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row"><Button type="button" className="btn btn-danger">UNFRIEND</Button></th>
-                    <td>@User1</td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><Button type="button" className="btn btn-danger">UNFRIEND</Button></th>
-                    <td>@User2</td>
-                  </tr>
+                  {this.props.friends.map(friend => (
+                    <tr>
+                     <th><Button type="button" className="btn btn-danger">UNFRIEND</Button></th>
+                      <td>{friend.username}</td>
+                    </tr>)
+                    )}
                 </tbody>
               </table>
           </div>
@@ -53,13 +50,13 @@ class MyFriends extends Component{
 const mapStateToProps = state => {
     return {
       firstName: state.user.firstName,
-      user: state.user.friends
+      friends: state.user.friends
     };
   };
 
 const mapDispatchToProps = dispatch => {
   return {
-    addFriendThunk: (friend) => dispatch(addFriendThunk(friend))
+    addFriendThunk: (friend_username) => dispatch(addFriendThunk(friend_username))
   }
 }
   

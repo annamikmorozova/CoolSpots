@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker';
+import FriendMarker from './FriendMarker';
 import {connect} from 'react-redux';
  
 class Map extends Component {
@@ -20,7 +21,7 @@ class Map extends Component {
   };
  
   render() {
-    const { places } = this.props;
+    const { places, friends } = this.props;
    
     return (
       <div style={{ height: '100vh', width: '100%' }}>
@@ -35,8 +36,13 @@ class Map extends Component {
           {places.map(place => {
             return (
               <Marker lat={place.lat["$numberDecimal"]} lng={place.lng["$numberDecimal"]} />
-            )
-          })}
+          )})}
+          {friends.map(friend => {
+            return friend.places.map(place => {
+              return <FriendMarker lat={place.lat["$numberDecimal"]} lng={place.lng["$numberDecimal"]} />
+            }) 
+          })
+          }
         </GoogleMapReact>
       </div>
     );
@@ -46,7 +52,8 @@ class Map extends Component {
 const MapStateToProps = state => {
   return {
     places: state.user.places,
-    center: state.center
+    center: state.center,
+    friends: state.user.friends,
   }
 }
  

@@ -7,7 +7,7 @@ import {Login} from "./AuthForm";
 import {Signup} from "./AuthForm";
 import MyFriends from "./MyFriends";
 import Map from "./Map";
-import {me} from '../store/userReducer.js';
+import {me} from "../store/userReducer.js";
 
 class Routes extends Component {
   componentDidMount() {
@@ -19,12 +19,12 @@ class Routes extends Component {
 
     return (
       <Switch>
-        {/* Routes placed here are available to all visitors */}
+        {/* available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         {isLoggedIn && (
           <Switch>
-            {/* Routes placed here are only available after logging in */}
+            {/*after logging in */}
             <Route exact path="/myfriends" component={MyFriends} />
             <Route component={Map} />
           </Switch>

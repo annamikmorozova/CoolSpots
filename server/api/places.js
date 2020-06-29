@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {Place} = require('../db/models/place');
-const {User} = require('../db/models/user');
+const {returnPopulatedUser} = require('../db/models/user');
 
 
 function loggedIn(req, res, next) {
@@ -34,9 +34,7 @@ router.post("/", loggedIn, async (req, res, next) => {
         user.places.push(newPlace._id)
         await newPlace.save()
         await user.save()
-        User.findOne({_id: user._id}).populate("places").then(populatedUser => {
-            res.json(populatedUser)
-        })
+        returnPopulatedUser(user, res)
     } catch(error) {
         next(error)
     }

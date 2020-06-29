@@ -72,9 +72,9 @@ export const addPlaceThunk = (data) => async dispatch => {
   }
 }
 
-export const addFriendThunk = (data) => async dispatch => {
+export const addFriendThunk = (username) => async dispatch => {
   try {
-    const response = await axios.post('api/friends', data);
+    const response = await axios.put(`api/friends/${username}`);
     dispatch(updateUser(response.data))
   } catch(err) {
     console.log(err)
