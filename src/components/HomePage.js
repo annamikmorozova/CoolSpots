@@ -1,10 +1,5 @@
 import React, {Component} from 'react';
-import {Login} from './AuthForm';
-import {Signup} from './AuthForm';
 import { Button } from 'react-bootstrap';
-import {AuthForm} from './AuthForm';
-// import {Navbar} from 'react-bootstrap';
-// import {connect} from 'react-redux';
 import logo from "../ts-map-pin.svg"
 
 export default class HomePage extends Component {

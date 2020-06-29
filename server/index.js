@@ -12,7 +12,7 @@ const {User} = require('./db/models/user')
 //secrets file
 require("dotenv").config();
 const app = express()
-const PORT = process.env.PORT || 5000
+const PORT = process.env.SERVER_PORT || 5000
 
 // logging middleware
 // Only use logging middleware when not running tests
@@ -38,7 +38,6 @@ app.use(cookieParser());
 
 //connecting to database
 const uri = process.env.NODE_ENV === "development" ? "mongodb://localhost:27017/cool-places" : process.env.DB_SECRET;
-console.log(uri)
 mongoose.connect(uri, { 
     useNewUrlParser: true, 
     useCreateIndex: true,  
