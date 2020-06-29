@@ -72,6 +72,16 @@ export const addPlaceThunk = (data) => async dispatch => {
   }
 };
 
+export const deletePlaceThunk = (placeId) => async dispatch => {
+  try {
+    await axios.delete(`/api/places/${placeId}`);
+    const res = await axios.get("/auth/me");
+    dispatch(updateUser(res.data || defaultUser));
+  } catch(err) {
+    console.log(err)
+  }
+}
+
 export const addFriendThunk = (username) => async dispatch => {
   try {
     const response = await axios.put(`api/friends/${username}`);
