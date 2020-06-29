@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import HomePage from "./HomePage";
 import {Login} from "./AuthForm";
 import {Signup} from "./AuthForm";
-import UserHome from "./UserHome";
+import MyFriends from "./MyFriends";
 import Map from "./Map";
-import {me} from '../store/reducer.js';
+import {me} from '../store/userReducer.js';
 
 class Routes extends Component {
   componentDidMount() {
@@ -25,7 +25,7 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route exact path="/myfriends" component={UserHome} />
+            <Route exact path="/myfriends" component={MyFriends} />
             <Route component={Map} />
           </Switch>
         )}

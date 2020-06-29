@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { GiThreeFriends } from "react-icons/gi";
 import { FiLogOut } from "react-icons/fi";
-import { logout } from "../store/reducer"
+import { logout } from "../store/userReducer"
 
 export class Sidebar extends Component {
     render () {

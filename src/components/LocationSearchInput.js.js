@@ -3,7 +3,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-import { addPlace } from '../store/reducer';
+import { addPlaceThunk } from '../store/userReducer';
 import {connect} from 'react-redux';
 
 export class LocationSearchInput extends React.Component {
@@ -17,12 +17,12 @@ export class LocationSearchInput extends React.Component {
   };
 
   handleSelect = address => {
-    console.log("ADDRESS", address)
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
         console.log('Success', latLng)
-        this.props.addPlace({...latLng, address})
+        console.log({...latLng, address})
+        this.props.addPlaceThunk({...latLng, address, name: address})
       })
       .catch(error => console.error('Error', error));
   };
@@ -48,7 +48,6 @@ export class LocationSearchInput extends React.Component {
                 const className = suggestion.active
                   ? 'suggestion-item--active'
                   : 'suggestion-item';
-                // inline style for demonstration purpose
                 const style = suggestion.active
                   ? { backgroundColor: '#fafafa', cursor: 'pointer' }
                   : { backgroundColor: '#ffffff', cursor: 'pointer' };
@@ -73,7 +72,7 @@ export class LocationSearchInput extends React.Component {
 
 const mapDispatch = dispatch => {
   return {
-      addPlace: place => dispatch(addPlace(place))
+      addPlaceThunk: place => dispatch(addPlaceThunk(place))
   }
 }
 

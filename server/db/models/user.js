@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Joi = require("joi");  //Data validation library https://hapi.dev/module/joi/ 
+const Joi = require("joi");
 
 const Schema = mongoose.Schema;
 
@@ -51,15 +51,6 @@ const userSchema = new Schema({
     timestamps: true
 });
 
-// userSchema.pre('save', function (next) {
-//     notify(this.get('email'));
-//     next();
-//   });
-
-//   Comment.path('name').set(function (v) {
-//     return capitalize(v);
-//   });
-
 userSchema.statics.findByLogin = async function (login) {
     let user = await this.findOne({
       username: login,
@@ -73,10 +64,6 @@ userSchema.statics.findByLogin = async function (login) {
   userSchema.pre('remove', function(next) {
     this.model('Places').deleteMany({ user: this._id }, next);
   });
-
-  // userSchema.save(function (err) {
-  //   if (err) return console.error(err);
-  // });
 
 function validateUser(user) {
     const schema = {
@@ -95,7 +82,10 @@ function validateUser(user) {
     };
     return Joi.validate(user, schema);
   }
-  
+
+  const passportLocalMongoose = require("passport-local-mongoose"); 
+  userSchema.plugin(passportLocalMongoose); 
+
   const User = mongoose.model("User", userSchema);
   
   module.exports = { User, validate: validateUser };

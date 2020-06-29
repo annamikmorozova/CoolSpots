@@ -4,10 +4,10 @@ const volleyball = require('volleyball')
 const compression = require('compression')
 const session = require('express-session')
 const passport = require('passport')
-const db = require('./db/models/user')
 const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
+const {User} = require('./db/models/user')
 
 //secrets file
 require("dotenv").config();
@@ -22,8 +22,6 @@ app.use(volleyball.custom({
 }))
 
 // body parsing middleware
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(express.urlencoded({
     extended: true
@@ -62,14 +60,16 @@ app.use(session({
     store: new MongoStore({mongooseConnection: connection})
 }));
 
-passport.serializeUser((user, done) => done(null, user.id))
-
-// routes
-// app.use('/api', require('./api')) 
-app.use('/auth', require('./auth/'))
-
+//passport.serializeUser((user, done) => done(null, user.id))
 app.use(passport.initialize())
 app.use(passport.session())
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// routes
+app.use('/api/friends', require('./api/friends')) 
+app.use('/api/places', require('./api/places')) 
+app.use('/auth', require('./auth/').router)
 
 
 // error handling middleware

@@ -1,10 +1,22 @@
 const router = require('express').Router();
 const { User } = require('../db/models/user');
 const bcrypt = require("bcrypt");
-module.exports = router;
 
-router.post("/login", async (req, res) => {
+function returnPopulatedUser(user, res) {
+    User.findOne({_id: user._id}).populate("friends").populate("places").then(populatedUser => {
+        res.json(populatedUser)
+    })
+}
 
+function loggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+      next();
+    } else {
+      res.sendStatus(403)
+    }
+}
+
+router.post("/login", async (req, res, next) => {
    await User.findOne({email: req.body.email})
       .then(user => {
           if(!user) res.send("User not found");
@@ -14,15 +26,18 @@ router.post("/login", async (req, res) => {
               } else if (!isMatch) {
                   console.log("Password doesn't match!")
               } else {
-                  req.session.user = user;
-                  res.json(user)
+                  req.login(user, err => {
+                        if (err) return next(err)
+                        User.findOne({_id: user._id}).populate("places").then(populatedUser => {
+                            res.json(populatedUser)
+                        })
+                  })
               }
           })
       })
 });
 
 router.post("/signup", async (req, res) => {
-  console.log(req.body)
   await User.findOne({email: req.body.email})
       .then(user => {
           if (user) return res.status(400).send("User already exists");
@@ -35,7 +50,6 @@ router.post("/signup", async (req, res) => {
                   email: req.body.email,
                   password: hash
               });
-              console.log(user)
 
               user.save()
                   .then(() => {
@@ -53,9 +67,15 @@ router.route('/logout').post((req, res) => {
   res.sendStatus(200);
 });
 
-router.route('/me').get((req, res) => {
-  console.log(req.session.user)
-  res.json(req.session.user);
+router.route('/me').get(loggedIn, (req, res) => {
+  User.findOne({_id: req.user._id}).populate("places").then(populatedUser => {
+    res.json(populatedUser)
+    })
 });
 
 // router.use('/google', require('./google'));
+
+module.exports = {
+    router, 
+    returnPopulatedUser
+};

@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 const Joi = require("joi");  //Data validation library https://hapi.dev/module/joi/ 
-mongoose.connect('mongodb://localhost:3000/test', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
 
 const Schema = mongoose.Schema;
 
@@ -14,11 +10,22 @@ const placeSchema = new Schema({
         trim: true
     },
     comment: {
-        type: Text,
-        required: true,
+        type: String,
         trim: true, //cuts off empty spaces
         maxlength: 50
     },
+    lat: {
+      type: mongoose.Types.Decimal128,
+      required: true
+    },
+    lng: {
+      type: mongoose.Types.Decimal128,
+      required: true
+    },
+    address: {
+      type: String,
+      required: true
+    }
 }, {
     timestamps: true
 });

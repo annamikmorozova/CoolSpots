@@ -1,4 +1,5 @@
 $primary: lightskyblue;
+$danger: red;
 
 @import "bootstrap";
 
@@ -24,7 +25,7 @@ body,
   display: flex;
   flex-direction: row;
   height: 100%;
-
+  margin-bottom: 100px;
   justify-content: center;
 }
 
@@ -77,17 +78,12 @@ body,
 //right side bar
 .rightSidebar {
   display: flex;
-  flex-wrap: wrap;
   float: right;
   flex-direction: column;
   padding-left: 20px;
   padding-right: 20px;
   background-color: lightskyblue;
   width: max-content;
-}
-
-.rightbar-text {
-  margin-top: 10px;
 }
 
 .input {
@@ -101,11 +97,6 @@ body,
   margin-top: 30px;
   flex: auto;
 }
-
-// .homePage-style {
-//   display: flex;
-//   width: 100%;
-// }
 
 .button-login, .button-signup {
   display: flex;
@@ -224,3 +215,59 @@ body,
     transform: translateY(0) rotate(-45deg);
   }
 }
+
+.place-name {
+  margin-top: 10px;
+  text-align: center;
+  font-style: oblique;
+}
+
+.input-margin {
+  margin-top: 10px;
+}
+
+.rightbar-text {
+  margin-top: 10px;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 0.2em 0.2em 0.2em rgba(0,0,0,0.2);
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-align: center;
+  font-style: oblique;
+}
+
+.location-search-input {
+  width: -webkit-fill-available;
+  height: 35px;
+  border: solid 2px lightblue;
+  box-shadow: 0.6em 0.6em 0.6em rgba(0,0,0,0.2);
+}
+
+.my-cool-spots {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-style: oblique;
+  font-weight: bold;
+  text-align: center;
+}
+
+//Footer
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  background-color: lightskyblue;
+  height: 100%;
+  padding: 20px;
+}
+
+.friends {
+  width: 100%;
+  padding: 10px;
+}
+
+.friends-title {
+  font-style: oblique;
+}
+

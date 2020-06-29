@@ -1,14 +1,13 @@
 import axios from 'axios';
 import history from '../history';
 
-const GET_USER = 'GET_USER';
+const UPDATE_USER = 'UPDATE_USER';
 const REMOVE_USER = 'REMOVE_USER';
-const ADD_PLACE = 'ADD_PLACE';
 
 const defaultUser = {};
 
-const getUser = user => ({
-    type: GET_USER, 
+const updateUser = user => ({
+    type: UPDATE_USER, 
     user
 });
 
@@ -16,15 +15,10 @@ const removeUser = () => ({
     type: REMOVE_USER
 });
 
-export const addPlace = place => ({
-  type: ADD_PLACE,
-  place
-})
-
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me');
-    dispatch(getUser(res.data || defaultUser));
+    dispatch(updateUser(res.data || defaultUser));
   } catch (err) {
     console.error(err);
   }
@@ -48,11 +42,11 @@ export const auth = (
       password
     });
   } catch (authError) {
-    return dispatch(getUser({error: authError}));
+    return dispatch(updateUser({error: authError}));
   }
 
   try {
-    dispatch(getUser(res.data));
+    dispatch(updateUser(res.data));
     history.push('/home');
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
@@ -69,16 +63,30 @@ export const logout = () => async dispatch => {
   }
 };
 
+export const addPlaceThunk = (data) => async dispatch => {
+  try {
+    const response = await axios.post('/api/places', data);
+    dispatch(updateUser(response.data))
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+export const addFriendThunk = (data) => async dispatch => {
+  try {
+    const response = await axios.post('api/friends', data);
+    dispatch(updateUser(response.data))
+  } catch(err) {
+    console.log(err)
+  }
+}
+
 export default function(state = defaultUser, action) {
   switch (action.type) {
-    case GET_USER:
+    case UPDATE_USER:
       return action.user;
     case REMOVE_USER:
       return defaultUser;
-    case ADD_PLACE:
-      return {
-        ...state, places: [...state.places, action.place]
-      }
     default:
       return state;
   }

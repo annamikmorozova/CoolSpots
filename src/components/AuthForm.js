@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {auth} from '../store/reducer';
+import {auth} from '../store/userReducer';
 import {
   Container,
   Col,
@@ -108,9 +108,9 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name;
       const firstName = formName === 'signup' ? evt.target.fname.value : null;
       const lastName = formName === 'signup' ? evt.target.lname.value : null;
+      const username = formName === 'signup' ? evt.target.username.value : null;
       const email = evt.target.email.value;
       const password = evt.target.password.value;
-      const username = formName === 'signup' ? evt.target.username.value : null;
       dispatch(auth(username, firstName, lastName, email, password, formName));
     }
   };
