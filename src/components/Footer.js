@@ -5,6 +5,7 @@ import {AiOutlineLinkedin} from "react-icons/ai";
 import {FaRegCopyright} from "react-icons/fa";
 
 const Footer = () => {
+  
   return (
     <div>
       <footer className="footer">

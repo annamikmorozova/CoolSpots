@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
-import Marker from './Marker';
-import FriendMarker from './FriendMarker';
-import {connect} from 'react-redux';
+import React, { Component } from "react";
+import GoogleMapReact from "google-map-react";
+import Marker from "./Marker";
+import FriendMarker from "./FriendMarker";
+import {connect} from "react-redux";
  
 class Map extends Component {
   constructor() {
@@ -16,7 +16,7 @@ class Map extends Component {
       disableDefaultUI: true,
       mapTypeControl: true,
       streetViewControl: true,
-      styles: [{ featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'on' }] }],
+      styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "on" }] }],
     };
   };
  
@@ -24,7 +24,7 @@ class Map extends Component {
     const { places, friends } = this.props;
    
     return (
-      <div style={{ height: '100vh', width: '100%' }}>
+      <div style={{ height: "100vh", width: "100%" }}>
         <GoogleMapReact
           center={this.props.center}
           defaultZoom={13}
