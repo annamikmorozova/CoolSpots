@@ -14,8 +14,8 @@ export class FavSpots extends Component {
                     <div className="my-cool-spots">My Cool Spots</div>
                     {places.map(place => {
                         return (
-                            <div classNAme="cool-spot-list" onClick={() => this.props.setCenter(parseFloat(place.lat["$numberDecimal"]), parseFloat(place.lng["$numberDecimal"]))} className="place-name">{place.name} <FcDeleteColumn size={32}/></div>
-                            );}
+                            <div className="cool-spot-list" onClick={() => this.props.setCenter(parseFloat(place.lat["$numberDecimal"]), parseFloat(place.lng["$numberDecimal"]))} className="place-name">{place.name} <FcDeleteColumn size={32}/></div>
+                        );}
                     )}
                 </div>
          );

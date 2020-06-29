@@ -1,11 +1,11 @@
 import React from "react";
 
 const Marker = (props) => {
-    const { color, name } = props;
+    const {name } = props;
     return (
       <div>
         <div className="pin bounce"
-          style={{ backgroundColor: color, cursor: "pointer"}}
+          style={{ cursor: "pointer"}}
           title={name}
         />
       <div className="pulse" />

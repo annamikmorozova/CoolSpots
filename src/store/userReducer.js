@@ -1,7 +1,7 @@
 import axios from "axios";
 import history from "../history";
 
-const UPDATE_USER = "UPDATE_USER";
+export const UPDATE_USER = "UPDATE_USER";
 const REMOVE_USER = "REMOVE_USER";
 
 const defaultUser = {};

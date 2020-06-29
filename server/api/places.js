@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {Place} = require("../db/models/place");
-const {returnPopulatedUser} = require("../db/models/user");
+const {returnPopulatedUser} = require("../auth");
 
 
 function loggedIn(req, res, next) {
