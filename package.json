@@ -54,15 +54,16 @@
     "yarn": "^1.22.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "react-start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "seed": "node seed.js",
     "build-client-watch": "webpack -w",
-    "start-dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "client": "cd src && yarn start",
-    "server": "NODE_ENV=development nodemon server/index.js"
+    "start-dev": "NODE_ENV=development yarn start",
+    "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "client": "cd src && yarn react-start",
+    "server": "nodemon server/index.js"
   },
   "eslintConfig": {
     "extends": "react-app"

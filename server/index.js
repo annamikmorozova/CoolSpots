@@ -38,6 +38,7 @@ app.use(cookieParser());
 
 //connecting to database
 const uri = process.env.NODE_ENV === "development" ? "mongodb://localhost:27017/cool-places" : process.env.DB_SECRET;
+console.log(uri)
 mongoose.connect(uri, { 
     useNewUrlParser: true, 
     useCreateIndex: true,  
