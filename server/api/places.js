@@ -1,13 +1,13 @@
-const router = require('express').Router();
-const {Place} = require('../db/models/place');
-const {returnPopulatedUser} = require('../db/models/user');
+const router = require("express").Router();
+const {Place} = require("../db/models/place");
+const {returnPopulatedUser} = require("../db/models/user");
 
 
 function loggedIn(req, res, next) {
     if (req.isAuthenticated()) {
       next();
     } else {
-      res.sendStatus(403)
+      res.sendStatus(403);
     }
   }
 
@@ -17,7 +17,7 @@ router.get("/", async (req, res, next) => {
         const places = await Place.find();
         res.json(places); 
     } catch(error) {
-        next(error)
+        next(error);
     }
 });
 
@@ -29,14 +29,14 @@ router.post("/", loggedIn, async (req, res, next) => {
             lat: req.body.lat,
             lng: req.body.lng,
             address: req.body.address
-        })
+        });
         const user = req.user;
-        user.places.push(newPlace._id)
-        await newPlace.save()
-        await user.save()
-        returnPopulatedUser(user, res)
+        user.places.push(newPlace._id);
+        await newPlace.save();
+        await user.save();
+        returnPopulatedUser(user, res);
     } catch(error) {
-        next(error)
+        next(error);
     }
 });
 

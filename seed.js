@@ -1,23 +1,23 @@
 // const { Seeder } = require('mongo-seeding');
-const { green, red } = require('chalk');
-const { db, User, Place } = require('./server/db');
+const { green, red } = require("chalk");
+const { db, User, Place } = require("./server/db");
 
 // require("dotenv").config();
 
 
 const users = [
   {
-    firstName: 'Anna',
-    lastName: 'Morozova',
-    email: 'anna@mymap.com',
-    password: '12345',
+    firstName: "Anna",
+    lastName: "Morozova",
+    email: "anna@mymap.com",
+    password: "12345",
   },{
-    firstName: 'Erik',
-    lastName: 'Yeomans',
-    email: 'anna@mymap.com',
-    password: '12345',
+    firstName: "Erik",
+    lastName: "Yeomans",
+    email: "anna@mymap.com",
+    password: "12345",
   },
-]
+];
 
 const seed = async () => {
   try {
@@ -27,8 +27,8 @@ const seed = async () => {
       return User.create(user);
     }));
 
-    console.log(green('Seeding success!'))
-    db.close()
+    console.log(green("Seeding success!"));
+    db.close();
 
   } catch (err) {
     console.log(red(err));
@@ -42,11 +42,11 @@ module.exports = seed;
 if (require.main === module) {
   seed()
     .then(() => {
-      console.log(green('Seeding success!'));
+      console.log(green("Seeding success!"));
       db.close();
     })
     .catch((err) => {
-      console.error(red('Oh noes! Something went wrong!'));
+      console.error(red("Oh noes! Something went wrong!"));
       console.error(err);
       db.close();
     });

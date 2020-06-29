@@ -1,5 +1,5 @@
-import React from 'react';
-import './App.scss';
+import React from "react";
+import "./App.scss";
 import Routes from "./components/Routes";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
@@ -18,6 +18,6 @@ function App() {
       </div>
       </div>
     );
-  };
+  }
 
 export default App;

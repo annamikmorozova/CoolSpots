@@ -1,4 +1,4 @@
-const UPDATE_CENTER = 'UPDATE_CENTER';
+const UPDATE_CENTER = "UPDATE_CENTER";
 
 export const InitialCenter = {
     lat: 40.73, 
@@ -17,8 +17,8 @@ export default function(state = InitialCenter, action) {
             return {
                 lat: action.lat,
                 lng: action.lng
-            }
+            };
         default:
             return state;
     }
-};
+}

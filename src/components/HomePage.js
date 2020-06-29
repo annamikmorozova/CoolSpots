@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import { Button } from 'react-bootstrap';
-import logo from "../ts-map-pin.svg"
+import React, {Component} from "react";
+import { Button } from "react-bootstrap";
+import logo from "../ts-map-pin.svg";
 
 export default class HomePage extends Component {
     render () {
@@ -12,10 +12,10 @@ export default class HomePage extends Component {
                     alt="HomePage"
                 />
                 <div className="buttons">
-                    <Button href="./login" className="button-login" variant="outline-primary">Login</Button>{' '}
-                    <Button href="./signup" className="button-signup" variant="outline-primary">Signup</Button>{' '}
+                    <Button href="./login" className="button-login" variant="outline-primary">Login</Button>{" "}
+                    <Button href="./signup" className="button-signup" variant="outline-primary">Signup</Button>{" "}
                 </div>
             </div>
-         )
+         );
     }
 }

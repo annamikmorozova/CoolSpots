@@ -1,8 +1,8 @@
-import React from 'react';
-import {Col} from 'reactstrap';
-import {GoMarkGithub} from 'react-icons/go';
-import {AiOutlineLinkedin} from 'react-icons/ai';
-import {FaRegCopyright} from 'react-icons/fa';
+import React from "react";
+import {Col} from "reactstrap";
+import {GoMarkGithub} from "react-icons/go";
+import {AiOutlineLinkedin} from "react-icons/ai";
+import {FaRegCopyright} from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -18,7 +18,7 @@ const Footer = () => {
               className="github"
               href="https://github.com/annamikmorozova/CoolSpots"
             >
-              {' '}
+              {" "}
               GitHub <GoMarkGithub color="black" size={32} />
             </a>
           </div>

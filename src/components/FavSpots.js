@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {setCenter} from '../store/centerReducer';
-import {FcDeleteColumn} from 'react-icons/fc';
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {setCenter} from "../store/centerReducer";
+import {FcDeleteColumn} from "react-icons/fc";
 
 export class FavSpots extends Component {
 
@@ -15,24 +15,24 @@ export class FavSpots extends Component {
                     {places.map(place => {
                         return (
                             <div classNAme="cool-spot-list" onClick={() => this.props.setCenter(parseFloat(place.lat["$numberDecimal"]), parseFloat(place.lng["$numberDecimal"]))} className="place-name">{place.name} <FcDeleteColumn size={32}/></div>
-                            )}
+                            );}
                     )}
                 </div>
-         )
+         );
     }
 }
 
 const MapStateToProps = state => {
     return {
       places: state.user.places,
-    }
-  }
+    };
+  };
 
 const MapDispatchToProps = dispatch => {
     return {
         setCenter: (lat, lng) => dispatch(setCenter(lat, lng)) 
-    }
-}
+    };
+};
 
 export default connect(MapStateToProps, MapDispatchToProps)(FavSpots);
 

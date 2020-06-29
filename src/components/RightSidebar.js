@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import PropTypes from 'prop-types';
-import LocationSearchInput from './LocationSearchInput.js';
-import FavSpots from './FavSpots';
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
+import PropTypes from "prop-types";
+import LocationSearchInput from "./LocationSearchInput.js";
+import FavSpots from "./FavSpots";
 
 export class RightSidebar extends Component {
   
@@ -15,16 +15,16 @@ export class RightSidebar extends Component {
               { isLoggedIn ? (
                 <div className="rightbar-text" href="#">Welcome, {firstName} </div>
                 ) : (
-                '')}
+                "")}
               { isLoggedIn ? (
                 <div className="input-margin" href="#">
                         <LocationSearchInput />
                         <FavSpots />
                   </div>
                 ) : (
-                '')}
+                "")}
             </div>
-         )
+         );
     }
 }
 

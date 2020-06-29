@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Joi = require("joi");
 
 const Schema = mongoose.Schema;
@@ -61,8 +61,8 @@ userSchema.statics.findByLogin = async function (login) {
     return user;
   };
 
-  userSchema.pre('remove', function(next) {
-    this.model('Places').deleteMany({ user: this._id }, next);
+  userSchema.pre("remove", function(next) {
+    this.model("Places").deleteMany({ user: this._id }, next);
   });
 
 function validateUser(user) {
@@ -75,10 +75,10 @@ function validateUser(user) {
         .required(),
       email: Joi.string()
         .required()
-        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'edu'] } }), //must be .com or .edu
+        .email({ minDomainSegments: 2, tlds: { allow: ["com", "edu"] } }), //must be .com or .edu
       password: Joi.string()
         .required()
-        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+        .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
     };
     return Joi.validate(user, schema);
   }

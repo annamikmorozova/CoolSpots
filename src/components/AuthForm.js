@@ -1,7 +1,7 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
-import {auth} from '../store/userReducer';
+import React from "react";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
+import {auth} from "../store/userReducer";
 import {
   Container,
   Col,
@@ -10,8 +10,8 @@ import {
   Label,
   Input,
   Button
-} from 'reactstrap';
-import { RiLogoutBoxLine } from 'react-icons/ri';
+} from "reactstrap";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 export const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props;
@@ -23,7 +23,7 @@ export const AuthForm = props => {
           <a href="./"><RiLogoutBoxLine size={32}/> </a>
           {displayName}
         </h2>
-        {name === 'signup' ? (
+        {name === "signup" ? (
           <div>
             <Col>
             <FormGroup>
@@ -87,16 +87,16 @@ export const AuthForm = props => {
 
 const mapLogin = state => {
   return {
-    name: 'login',
-    displayName: 'Login',
+    name: "login",
+    displayName: "Login",
     error: state.user.error
   };
 };
 
 const mapSignup = state => {
   return {
-    name: 'signup',
-    displayName: 'Sign Up',
+    name: "signup",
+    displayName: "Sign Up",
     error: state.user.error
   };
 };
@@ -106,9 +106,9 @@ const mapDispatch = dispatch => {
     handleSubmit(evt) {
       evt.preventDefault();
       const formName = evt.target.name;
-      const firstName = formName === 'signup' ? evt.target.fname.value : null;
-      const lastName = formName === 'signup' ? evt.target.lname.value : null;
-      const username = formName === 'signup' ? evt.target.username.value : null;
+      const firstName = formName === "signup" ? evt.target.fname.value : null;
+      const lastName = formName === "signup" ? evt.target.lname.value : null;
+      const username = formName === "signup" ? evt.target.username.value : null;
       const email = evt.target.email.value;
       const password = evt.target.password.value;
       dispatch(auth(username, firstName, lastName, email, password, formName));

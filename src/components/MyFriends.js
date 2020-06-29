@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
-import {Button} from 'react-bootstrap';
-import {connect} from 'react-redux';
-import {addFriendThunk} from '../store/userReducer';
+import React, {Component} from "react";
+import {Button} from "react-bootstrap";
+import {connect} from "react-redux";
+import {addFriendThunk} from "../store/userReducer";
 
 class MyFriends extends Component{
   constructor() {
-    super()
+    super();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addFriendThunk(event.target.friend_username.value)
+    this.props.addFriendThunk(event.target.friend_username.value);
   }
 
     render() {
@@ -27,7 +27,7 @@ class MyFriends extends Component{
                 />
                 <Button type="submit" className="btn btn-primary">ADD</Button>
               </form>
-              <table class="table">
+              <table className="table">
                 <thead>
                   <tr>
                     <th scope="col">Unfriend</th>
@@ -44,7 +44,7 @@ class MyFriends extends Component{
                 </tbody>
               </table>
           </div>
-      )}
+      );}
 }
 
 const mapStateToProps = state => {
@@ -57,7 +57,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addFriendThunk: (friend_username) => dispatch(addFriendThunk(friend_username))
-  }
-}
+  };
+};
   
 export default connect(mapStateToProps, mapDispatchToProps)(MyFriends);
