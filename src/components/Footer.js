@@ -8,13 +8,13 @@ const Footer = () => {
   return (
     <div>
       <footer className="footer">
-        <Col className="footer-col">
+        <Col size={6} className="footer-col">
           <span className="footer-title">Cool Spots</span>
           <span className="description">
-            Make your own map of cool spots. Share it with friends! 
+            Share your favorite spots in the city with friends. Finding best places in the city has never been easier!
           </span>
           <div className="github-box">
-            <a
+            <a target="_blank"
               className="github"
               href="https://github.com/annamikmorozova/CoolSpots"
             >
@@ -23,17 +23,15 @@ const Footer = () => {
             </a>
           </div>
           <span className="year">June 2020</span>
-        </Col>
-        <Col className="footer-col-2">
           <span className="copyright">
-            <FaRegCopyright size={23} />Copyright:
-          </span>
-          <a
+            <FaRegCopyright size={23} />Copyright: 
+            <a target="_blank"
             href="https://www.linkedin.com/in/morozovaanna/"
             className="copyright-name"
           >
             <AiOutlineLinkedin size={25} />Anna Morozova
           </a>
+          </span>
         </Col>
       </footer>
     </div>
