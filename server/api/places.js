@@ -41,7 +41,7 @@ router.post("/", loggedIn, async (req, res, next) => {
 router.delete("/:placeId",loggedIn, async (req, res, next) => {
     try {
         const destroyedPlace = await Place.deleteOne({_id: req.params.placeId});
-        console.log(destroyedPlace)
+        
         if (!destroyedPlace) {
             res.sendStatus(404)
             console.log("Place was not found. Did you already delete it?")
