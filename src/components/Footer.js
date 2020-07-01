@@ -16,6 +16,7 @@ const Footer = () => {
           </span>
           <div className="github-box">
             <a target="_blank"
+              rel="noopener noreferrer" 
               className="github"
               href="https://github.com/annamikmorozova/CoolSpots"
             >
@@ -27,6 +28,7 @@ const Footer = () => {
           <span className="copyright">
             <FaRegCopyright size={23} />Copyright: 
             <a target="_blank"
+            rel="noopener noreferrer" 
             href="https://www.linkedin.com/in/morozovaanna/"
             className="copyright-name"
           >

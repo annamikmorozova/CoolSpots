@@ -5,11 +5,6 @@ import {FcDeleteColumn} from "react-icons/fc";
 import {deletePlaceThunk} from "../store/userReducer"
 
 export class FavSpots extends Component {
-    // constructor() {
-    //     super()
-    //     this.handleSubmit = this.
-    // }
-
 
     render () {
         const { places } = this.props;
@@ -20,7 +15,7 @@ export class FavSpots extends Component {
                     <div className="my-cool-spots">My Cool Spots</div>
                     {places.map(place => {
                         return (
-                            <div className="cool-spot-list" onClick={() => this.props.setCenter(parseFloat(place.lat["$numberDecimal"]), parseFloat(place.lng["$numberDecimal"]))} className="place-name">{place.name} <FcDeleteColumn onClick={() => {this.props.deletePlaceThunk(place._id)}}  size={32}/></div>
+                            <div className="place-name" onClick={() => this.props.setCenter(parseFloat(place.lat["$numberDecimal"]), parseFloat(place.lng["$numberDecimal"]))}>{place.name} <FcDeleteColumn onClick={() => {this.props.deletePlaceThunk(place._id)}}  size={32}/></div>
                         );}
                     )}
                 </div>
