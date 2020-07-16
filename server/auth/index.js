@@ -71,7 +71,7 @@ router.route("/me").get(loggedIn, (req, res) => {
     returnPopulatedUser(req.user, res);
 });
 
-// router.use('/google', require('./google'));
+// TODO: router.use('/google', require('./google'));
 
 module.exports = {
     router, 

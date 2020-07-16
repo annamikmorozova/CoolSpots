@@ -1,9 +1,5 @@
-// const { Seeder } = require('mongo-seeding');
 const { green, red } = require("chalk");
 const { db, User, Place } = require("./server/db");
-
-// require("dotenv").config();
-
 
 const users = [
   {
@@ -35,10 +31,6 @@ const seed = async () => {
   }
 };
 
-module.exports = seed;
-// If this module is being required from another module, then we just export the
-// function, to be used as necessary. But it will run right away if the module
-// is executed directly (e.g. `node seed.js` or `npm run seed`)
 if (require.main === module) {
   seed()
     .then(() => {
@@ -52,27 +44,4 @@ if (require.main === module) {
     });
 }
 
-
-// const config = {
-//     database: {
-//       name: 'cool-places',
-//       host: process.env.DB_SECRET
-//     },
-//     dropDatabase: true,
-//   };
-
-// const seeder = new Seeder(config);
-// const collections = seeder.readCollectionsFromPath(path.resolve("/Users/annamorozova/Desktop/mongodb-data"));
-
-// seeder
-//   .import(collections)
-//   .then(() => {
-//     console.log("Collections are seeded!")
-//   })
-//   .catch(err => {
-//       console.log(err)
-//   })
-
-//   module.exports = {
-//     firstName: 'John',
-//   }
+module.exports = seed;

@@ -12,7 +12,6 @@ function loggedIn(req, res, next) {
   }
 }
 
-//get all users
 router.get("/", loggedIn, async (req, res, next) => {
   try {
     const users = await User.find();

@@ -15,20 +15,20 @@ const userSchema = new Schema({
     firstName: {
         type: String,
         required: true,
-        trim: true, //cuts off empty spaces
+        trim: true,
         maxlength: 50
     },
     lastName: {
         type: String,
         required: true,
-        trim: true, //cuts off empty spaces
+        trim: true,
         maxlength: 50
     },
     email: {
         type: String,
         required: true,
         unique: true,
-        trim: true, //cuts off empty spaces
+        trim: true,
         maxlength: 70
     },
     password: {
@@ -56,7 +56,7 @@ userSchema.statics.findByLogin = async function (login) {
       username: login,
     });
     if (!user) {
-      user = await this.findOne({ email: login }); //find by email is possible
+      user = await this.findOne({ email: login });
     }
     return user;
   };
@@ -75,7 +75,7 @@ function validateUser(user) {
         .required(),
       email: Joi.string()
         .required()
-        .email({ minDomainSegments: 2, tlds: { allow: ["com", "edu"] } }), //must be .com or .edu
+        .email({ minDomainSegments: 2, tlds: { allow: ["com", "edu"] } }),
       password: Joi.string()
         .required()
         .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),

@@ -54,7 +54,5 @@ router.delete("/:placeId",loggedIn, async (req, res, next) => {
     }
 });
 
-
-
 module.exports = router;
 

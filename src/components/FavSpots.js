@@ -10,7 +10,6 @@ export class FavSpots extends Component {
         const { places } = this.props;
       
         return (
-       
                 <div>
                     <div className="my-cool-spots">My Cool Spots</div>
                     {places.map(place => {

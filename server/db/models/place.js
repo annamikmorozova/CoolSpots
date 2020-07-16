@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Joi = require("joi");  //Data validation library https://hapi.dev/module/joi/ 
+const Joi = require("joi");
 
 const Schema = mongoose.Schema;
 
