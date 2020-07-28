@@ -1,4 +1,4 @@
-#Cool Spots
+## Cool Spots
 
 Sharing your favorite spots in the city has never been easier with cool-spots app. 
 The app allows you to display markers (blue) of your favorite places on the map. A user can also add friends and see their markers (yellow).
