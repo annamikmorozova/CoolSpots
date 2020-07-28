@@ -59,7 +59,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "seed": "node seed.js",
     "build-client-watch": "webpack -w",
     "start-dev": "NODE_ENV=development concurrently --kill-others-on-fail \"yarn server-dev\" \"yarn client\"",
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
